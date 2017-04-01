@@ -1,0 +1,59 @@
+<div class="col-sm-9 col-sm-offset-3 main">
+  <h1 class="page-header">{{ctrl.endpointName}}{{ctrl.name}}</h1>
+
+  <div class="container_fluid">
+    Procedure: {{ctrl.endpointName}}{{ctrl.name}}
+
+    <h3>{{ctrl.type}} : <a class="h3" href="{{ctrl.link}}" target="_blank">{{ctrl.link}}</a></h3>
+
+    <table class="table table-bordered table-responsive">
+      <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr data-ng-repeat="(name, data) in ctrl.parameters">
+        <td>{{name}}</td>
+        <td width="200px">{{data.type | uppercase}}</td>
+        <td width="500px">
+          <input data-ng-disabled="ctrl.loading" data-ng-init="data.value = data.default"
+                 class="input-sm form-control form-control-clean" type="text" ng-model="data.value">
+          <div class="text-danger small" data-ng-if="ctrl.errors[name]">{{ctrl.errors[name]}}</div>
+        </td>
+        <td width="50px">
+          <button data-ng-disabled="ctrl.loading" class="btn btn-info btn-xs"
+                  data-ng-click="data.value = data.default; ctrl.validate();">Reset
+          </button>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th></th>
+      </tr>
+      </tfoot>
+    </table>
+
+    <div class="clearfix">
+      <button data-ng-disabled="ctrl.loading" ng-bind="ctrl.loading ? 'Loading...' : 'Send'"
+              class="btn btn-info pull-right" data-ng-click="ctrl.send()"></button>
+    </div>
+
+    <h3>Response: <span data-ng-if="ctrl.time">{{ctrl.time}} ms</span></h3>
+
+    <div class="text-danger" data-ng-if="!ctrl.data.success">{{ctrl.data.data}}</div>
+    <div class="overflow-auto" data-ng-if="ctrl.data.success" ng-bind-html="ctrl.print(ctrl.data.data)"></div>
+    <div class="jsonpretty">
+        <h3>JSON format:</h3>
+      <pre>{{ctrl.data.data | json}}</pre>
+    </div>
+
+  </div>
+</div>

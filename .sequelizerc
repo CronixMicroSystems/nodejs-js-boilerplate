@@ -1,0 +1,12 @@
+const path = require('path');
+const config = require('./config')
+
+/**
+ * This file is so that Sequelize looks to correct directory to load the database
+ */
+module.exports = {
+    'config': path.resolve(__dirname, 'config'),
+    'models-path': path.resolve(__dirname, 'database/models'),
+    'migrations-path': path.resolve(__dirname, 'database/migrations'),
+    'seeders-path': path.resolve(__dirname, 'database/seeders')
+};

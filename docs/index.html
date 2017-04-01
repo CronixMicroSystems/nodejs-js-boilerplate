@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="DocsApp" data-ng-controller="AppController as appCtrl">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentation</title>
+  <base href="/">
+
+  <!-- Frameworks -->
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="node_modules/angular-xeditable/dist/css/xeditable.min.css">
+
+  <!-- My styles -->
+  <link rel="stylesheet" href="css/helpers.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top docs_navbar" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand docs_title" ui-sref="documentation">Documentation</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <form class="navbar-form navbar-right">
+        <input data-ng-model="appCtrl.search" type="text" class="form-control" placeholder="Search...">
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li ui-sref-active="active"><a class="docs_active_naw" ui-sref="documentation">Documentation</a></li>
+        <li ui-sref-active="active"><a class="docs_active_naw" ui-sref="uploads">Uploads</a></li>
+        <li ui-sref-active="active"><a class="docs_active_naw" ui-sref="updates">Updates</a></li>
+        <li ui-sref-active="active"><a class="docs_active_naw" ui-sref="support">Support</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="col-sm-3 sidebar">
+    <div class="clearfix m-b-md">
+      <button class="btn btn-success btn-xs" data-ng-click="appCtrl.showAllMenus()">Show all</button>
+      <button class="btn btn-danger btn-xs" data-ng-click="appCtrl.hideAllMenus()">Hide all</button>
+    </div>
+    <accordion close-others="false">
+      <accordion-group data-ng-repeat="endpoint in appCtrl.endpoints" data-ng-if="endpoint.include" is-open="endpoint.visible">
+        <accordion-heading>
+          <strong>{{endpoint.name}}</strong>
+        </accordion-heading>
+        <ul class="nav">
+          <li data-ng-repeat="(method, parameters) in endpoint.methods" data-ng-if="appCtrl.filter(method)" ui-sref-active="active">
+            <a ui-sref="method({endpointName: endpoint.name, methodName: method})"><strong class="m-r-sm" style="display: inline-block; width: 50px;">{{method.split('@')[1]}}:</strong>{{method.split('@')[0]}}</a>
+          </li>
+        </ul>
+      </accordion-group>
+    </accordion>
+  </div>
+  <div ui-view></div>
+</div>
+
+<!-- Frameworks-->
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/angular/angular.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="node_modules/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="node_modules/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="node_modules/angular-file-upload/dist/angular-file-upload.min.js"></script>
+<script src="node_modules/angular-resource/angular-resource.min.js"></script>
+<script src="node_modules/angular-xeditable/dist/js/xeditable.min.js"></script>
+<script src="node_modules/angular-storage/dist/angular-storage.min.js"></script>
+<script src="node_modules/validator/validator.min.js"></script>
+
+<!-- App -->
+<script src="js/app.js"></script>
+
+<!-- Config -->
+<script src="js/config/config.js"></script>
+<script src="js/config/routers.js"></script>
+
+<!-- Utils -->
+<script src="js/utils/Validator.js"></script>
+<script src="js/utils/Requester.js"></script>
+<script src="js/utils/Data.js"></script>
+<script src="js/utils/Type.js"></script>
+
+<!-- Methods -->
+<script src="js/methods/Auth.js"></script>
+
+<!-- Endpoints -->
+<script src="js/services/Endpoints.js"></script>
+
+<!-- Controllers-->
+<script src="js/controllers/AppController.js"></script>
+<script src="js/controllers/MethodController.js"></script>
+<script src="js/controllers/DocumentationController.js"></script>
+<script src="js/controllers/SupportController.js"></script>
+<script src="js/controllers/UpdatesController.js"></script>
+<script src="js/controllers/UploadsController.js"></script>
+
+</body>
+</html>
