@@ -68,3 +68,6 @@ npm-debug.log.850339493
 .ssh/*
 
 .env
+
+yarn.lock
+docs/yarn.lock
