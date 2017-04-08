@@ -1,4 +1,4 @@
-## nodejs-boilerplate
+## nodejs-js-boilerplate
 
 ### Installation: 
 
@@ -6,28 +6,28 @@
 
 first for server:
 
-    npm install
+    yarn install
     
-then for api server:
+then for api-docs server:
 
     cd docs/
-    npm install
+    yarn install
 
-2) create database:
+2) Create database:
 
 
-    mysql -u[username] -p
+    mysql -u[username] -p[password]
     
     create database `nodejs_boilerplate`;
     
-3) set up username and password in `config/index.js` to connect to database
+3) Add username and password in `config/index.js` to connect to database
     
-4) run migrations and seeds:
+4) Run migrations and seeds:
 
 in project root directory:
 
-    npm run migrate
-    npm run seed
+    yarn run migrate
+    yarn run seed
     
 or 
 
@@ -38,23 +38,22 @@ where [env] project environment (database by default)
 
 ### Usage:
 
-
 in project root directory:
 
 1) run server:
 
-`npm run run`
+`yarn run run`
 
-server will be run on [http://localhost:3000/](http://localhost:3000/)
+server will be run on [http://localhost:5000/](http://localhost:5000/)
     
 2) run api server:
  
- `npm run docs`
+ `yarn run docs`
  
 api server will be run on [http://localhost:4000/](http://localhost:4000/)
 
 3) run all:
 
-  `npm run all`
+  `yarn run all`
 
 run both server and docs

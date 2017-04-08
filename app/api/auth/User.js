@@ -1,13 +1,9 @@
 const router = require('koa-router')()
 const koajwt = require('koa-jwt')
 const md5 = require('md5')
-
 const config = require('../../../config')
-
 const {Handlers, Validator} = require('../../utils')
-
 const {returnResult, returnError} = Handlers
-
 const {EmailService} = require('../../services')
 
 router.post('/login', function* () {
@@ -17,12 +13,7 @@ router.post('/login', function* () {
     password: [{isExistAndNotEmpty: {}}]
   })
 
-  // if (parameters.err.build.ddddd) {
-  //   returnError(ctx)()
-  // }
-  if (errors && Object.keys(errors).length) {
-    return returnError(ctx, 400)(errors)
-  }
+  if (errors && Object.keys(errors).length) { return returnError(ctx, 400)(errors) }
 
   yield ctx.db.User.findOne({
     where: {

@@ -4,7 +4,7 @@
   "description": "crm-cronix-api",
   "main": "server.js",
   "scripts": {
-    "run": "./node_modules/pm2/bin/pm2 stop server.js && ./node_modules/pm2/bin/pm2 start server.js",
+    "run": "./node_modules/pm2/bin/pm2 start ./server.js",
     "run:dev": "./node_modules/pm2/bin/pm2 start ecosystem.config.js --no-daemon --watch",
     "destroy": "./node_modules/pm2/bin/pm2 stop server.js && ./node_modules/pm2/bin/pm2 stop docs.js",
     "migrate": "NODE_ENV=database node_modules/sequelize-cli/bin/sequelize db:migrate",
@@ -13,7 +13,7 @@
     "seed:undo": "NODE_ENV=database node_modules/sequelize-cli/bin/sequelize db:seed:undo:all",
     "lint": "eslint --ext .js server.js docs.js ./app ./config ./database",
     "lintfix": "eslint --ext .js server.js docs.js ./app ./config ./database --fix",
-    "docs": "./node_modules/pm2/bin/pm2 stop docs.js && ./node_modules/pm2/bin/pm2 start docs.js",
+    "docs": "./node_modules/pm2/bin/pm2 start ./docs.js",
     "docs:dev": "./node_modules/pm2/bin/pm2 start docs.js --no-daemon --watch",
     "all": "npm run run & npm run docs"
   },

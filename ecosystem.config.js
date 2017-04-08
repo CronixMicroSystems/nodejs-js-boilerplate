@@ -7,7 +7,7 @@ module.exports = {
 
     // First application
     {
-      name: 'crm-cronix-server',
+      name: 'nodejs-boilerplate-server',
       script: 'server.js',
       watch: true,
       ignore_watch: ['node_modules', 'uploads', 'docs', '.idea', '.git'],
@@ -15,7 +15,7 @@ module.exports = {
 
     // Second application
     {
-      name: 'crm-cronix-docs',
+      name: 'nodejs-boilerplate-docs',
       script: 'docs.js',
       watch: ['docs/css', 'docs/js', 'docs/pages', 'docs/index.html'],
       ignore_watch: ['node_modules', 'uploads', '.idea', '.git'],
